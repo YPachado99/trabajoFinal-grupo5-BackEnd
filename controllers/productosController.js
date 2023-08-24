@@ -46,18 +46,17 @@ const addProduto = async (req, res) => {
 const updateProducto = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(req.body)
+    console.log(req.body);
 
     //const productoActualizado = await producto.findById();
     const productoActualizado = await ProductoModel.findByIdAndUpdate(
       { _id: id },
       req.body,
-      
+
       { new: true }
     );
-    
+
     res.status(200).json(productoActualizado);
-    
   } catch (error) {
     res.status(400).json("Producto no actualizada");
   }

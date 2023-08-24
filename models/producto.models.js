@@ -26,7 +26,7 @@ const productoSchema = new Schema(
     },
     stockMinimo: {
       type: Number,
-      default:0,
+      default: 0,
     },
     categoria: {
       type: String,
