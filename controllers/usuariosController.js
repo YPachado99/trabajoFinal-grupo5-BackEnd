@@ -35,13 +35,14 @@ const register = async (req, res) => {
 };
 
 const loginUsuario = async (req, res) => {
-  const user = await Usuarios.findOne({ mail: req.body.mail });
+  const user = await Usuarios.find({ mail: req.body.mail });
 
   if (!user) {
     return res.status(400).json("Usuario y/o contraseña incorrecto");
   }
 
-  const match = await bcrypt.compare(req.body.contraseña, user.contraseña);
+  //const match = await bcrypt.compare(req.body.contraseña, user.contraseña);
+  const match = req.body.contraseña == user[0].contraseña
 
   if (!match) {
     return res.status(400).json("Usuario y/o contraseña incorrecto");
@@ -51,16 +52,16 @@ const loginUsuario = async (req, res) => {
 
   const token = jwt.sign(
     {
-      id: user._id,
-      nombre: user.nombre,
-      apellido: user.apellido,
-      role: user.role,
-      mail: user.mail,
-      telefono: user.telefono,
-      url: user.url,
-      usuarioAdm: user.usuarioAdm,
+      id: user[0]._id,
+      nombre: user[0].nombre,
+      apellido: user[0].apellido,
+      role: user[0].role,
+      mail: user[0].mail,
+      telefono: user[0].telefono,
+      url: user[0].url,
+      usuarioAdm: user[0].usuarioAdm,
     },
-    process.env.SECRET_KEY,
+    "test",
     { expiresIn: "1d" }
   );
 
