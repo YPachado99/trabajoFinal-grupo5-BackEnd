@@ -2,6 +2,8 @@ const UsuarioModel = require("../models/usuario.models");
 const Usuarios = require("../models/usuario.models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const usuarioService = require("../services/usuario.service");
+const res = require("express/lib/response");
 
 const register = async (req, res) => {
   try {
@@ -17,7 +19,14 @@ const register = async (req, res) => {
     } = req.body;
     const hash = await bcrypt.hash(contraseña, 10);
 
+    const  usuarios = await usuarioService.create(req.body);
+
+    if (!usuarios){
+    return res.status(400).send({message: "Error al Crear Usuario"});
+    }
+
     const usuario = new Usuarios({
+      id: usuarios._id,
       nombre,
       apellido,
       role,
