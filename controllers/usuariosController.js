@@ -21,9 +21,9 @@ const register = async (req, res) => {
 
     const  usuarios = await usuarioService.create(req.body);
 
-    if (!usuarios){
+    /*if (!usuarios){
     return res.status(400).send({message: "Error al Crear Usuario"});
-    }
+    }*/
 
     const usuario = new Usuarios({
       id: usuarios._id,
