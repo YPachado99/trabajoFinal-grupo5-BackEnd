@@ -19,14 +19,13 @@ const register = async (req, res) => {
     } = req.body;
     const hash = await bcrypt.hash(contraseña, 10);
 
-    const  usuarios = await usuarioService.create(req.body);
+    /* const  usuarios = await usuarioService.create(req.body);
 
-    /*if (!usuarios){
+    if (!usuarios){
     return res.status(400).send({message: "Error al Crear Usuario"});
     }*/
 
     const usuario = new Usuarios({
-      id: usuarios._id,
       nombre,
       apellido,
       role,
