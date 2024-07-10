@@ -82,7 +82,8 @@ const loginUsuario = async (req, res) => {
 const getAllUsers = async (req, res) => {
   try {
     const usuarios = await Usuarios.find();
-    res.json(usuarios);
+    const newusuarios = usuarios.map(user => {return{...user, contraseña: null}})
+    res.json(newusuarios);
   } catch (error) {
     res.status(400).json("Usuarios no encontrados");
   }
