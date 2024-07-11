@@ -46,7 +46,7 @@ const addProduto = async (req, res) => {
 const updateProducto = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(req.body);
+    //console.log(req.body);
 
     //const productoActualizado = await producto.findById();
     const productoActualizado = await ProductoModel.findByIdAndUpdate(

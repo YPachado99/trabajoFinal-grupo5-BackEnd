@@ -110,7 +110,7 @@ const deleteUsuario = async (req, res) => {
 const updateUsuario = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(req.body);
+    //console.log(req.body);
 
     const UsuarioActualizado = await UsuarioModel.findByIdAndUpdate(
       { _id: id },
