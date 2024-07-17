@@ -3,7 +3,8 @@ const app = express();
 const connectDb = require("./db/mongodb");
 const cors = require("cors");
 const comprobacionJwt = require("./middleware/comprobacionJwt");
-
+const dotenv = require("dotenv");
+dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
@@ -15,7 +16,8 @@ app.use(cors({
   credentials: true, // habilita el intercambio de cookies entre dominios
 }));
 
-require("dotenv").config();
+
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 connectDb();
 const initApp = async () => {
