@@ -8,8 +8,7 @@ const { DB_USER, DB_PASSWORD,DB_NAME } = process.env;
 const connectDb = async () => {
   console.log("Esperando Conexion con la Base de Datos");
   try {
-    const dbUrl = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@bdcodestockers.uaqhnmp.mongodb.net/?retryWrites=true&w=majority&appName=${DB_NAME}`;
-    await mongoose.connect( dbUrl, {
+    await mongoose.connect( `mongodb+srv://${DB_USER}:${DB_PASSWORD}@bdcodestockers.uaqhnmp.mongodb.net/?retryWrites=true&w=majority&appName=BDcodeStockers`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
